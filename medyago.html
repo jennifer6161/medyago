@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medya GO - Sosyal Medya Hizmetleri & Takipçi Paketleri</title>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF5722',
+                            orangeHover: '#E64A19',
+                            dark: '#0F172A',
+                            card: '#1E293B',
+                            light: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0F17;
+            color: #F3F4F6;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FF5722 0%, #FF8A65 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);
+        }
+
+        .card-glow {
+            box-shadow: 0 0 25px rgba(255, 87, 34, 0.15);
+            border: 1px solid rgba(255, 87, 34, 0.2);
+        }
+
+        .card-glow:hover {
+            box-shadow: 0 0 35px rgba(255, 87, 34, 0.3);
+            border-color: rgba(255, 87, 34, 0.5);
+        }
+
+        /* Toast Popup Notification */
+        #liveToast {
+            transition: all 0.5s ease-in-out;
+            transform: translateY(100px);
+            opacity: 0;
+        }
+
+        #liveToast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-brand-orange text-white text-xs font-semibold py-2 px-4 text-center tracking-wide">
+        🚀 Medya GO Özel İndirim Kampanyası Başladı! Tüm Takipçi Paketlerinde %15 İndirim Fırsatı!
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="border-b border-gray-800 bg-gray-900/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- LOGO -->
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="gradient-bg text-white font-extrabold text-xl px-3 py-1 rounded-lg tracking-wider flex items-center gap-1">
+                    MEDYA <span class="bg-white text-brand-orange px-1.5 py-0.5 rounded text-sm">GO</span>
+                </div>
+            </div>
+
+            <!-- NAV LINKS -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#paketler" class="hover:text-brand-orange transition-colors">Paketler</a>
+                <a href="#neden-biz" class="hover:text-brand-orange transition-colors">Neden Medya GO?</a>
+                <a href="#sss" class="hover:text-brand-orange transition-colors">S.S.S</a>
+            </div>
+
+            <!-- TRUST BADGE -->
+            <div class="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-950/40 border border-emerald-800/50 px-3 py-1.5 rounded-full">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span class="font-semibold">Shopier Güvenli Ödeme</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="py-12 md:py-20 px-4 text-center max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-orange/10 border border-brand-orange/30 text-brand-orange text-xs font-semibold mb-6">
+            <i class="fa-solid fa-bolt"></i> Anında Otomatik Teslimat
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+            Instagram Hesabınızı <span class="gradient-text">Zirveye Taşıyın</span>
+        </h1>
+        <p class="text-gray-400 text-sm md:text-lg max-w-2xl mx-auto mb-8">
+            Şifreniz gerekmeden, %100 güvenli Shopier altyapısı ile anında etkileşiminizi artırın. Düşme riskine karşı garantili hizmet.
+        </p>
+        
+        <!-- HERO BADGES -->
+        <div class="flex flex-wrap items-center justify-center gap-6 text-xs md:text-sm text-gray-400">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-key text-brand-orange"></i> Şifresiz İşlem</span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-credit-card text-brand-orange"></i> 3D Secure Ödeme</span>
+            <span class="flex items-center gap-2"><i class="fa-solid fa-headset text-brand-orange"></i> 7/24 Destek</span>
+        </div>
+    </section>
+
+    <!-- PACKAGES SECTION -->
+    <section id="paketler" class="py-8 px-4 max-w-6xl mx-auto w-full">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Instagram Takipçi Paketleri</h2>
+            <p class="text-gray-400 text-sm">İhtiyacınıza en uygun paketi seçin, anında büyümeye başlayın.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <!-- PAKET 1: 100 TAKİPÇİ -->
+            <div class="bg-gray-900 rounded-2xl p-6 card-glow flex flex-col justify-between relative transition-all duration-300">
+                <div>
+                    <!-- INDIRIM BADGE -->
+                    <div class="absolute -top-3 right-4 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        %15 İndirim
+                    </div>
+                    
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Başlangıç Paketi</h3>
+                            <p class="text-xs text-gray-400">Küçük hesaplar için ideal</p>
+                        </div>
+                    </div>
+
+                    <div class="my-6">
+                        <div class="text-gray-500 line-through text-sm font-semibold">35.00 TL</div>
+                        <div class="text-3xl font-extrabold text-white">29.99 <span class="text-sm font-normal text-gray-400">TL</span></div>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>100</strong> Instagram Takipçi</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>Hızlı</strong> Otomatik Teslimat</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>Şifre İstenmez</strong></li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> 3D Secure Güvenli Ödeme</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> 7/24 Canlı Destek</li>
+                    </ul>
+                </div>
+
+                <button onclick="openModal('100-takipci')" class="w-full py-3 px-4 gradient-bg text-white font-bold rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-cart-shopping"></i> Satın Al
+                </button>
+            </div>
+
+            <!-- PAKET 2: 1000 TAKİPÇİ (POPULE) -->
+            <div class="bg-gray-900 rounded-2xl p-6 card-glow flex flex-col justify-between relative border-2 border-brand-orange transition-all duration-300 scale-105 shadow-2xl">
+                <!-- POPULER BADGE -->
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 gradient-bg text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                    🔥 En Çok Tercih Edilen
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-3 mb-4 mt-2">
+                        <div class="w-10 h-10 rounded-xl bg-brand-orange text-white flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">Popüler Paket</h3>
+                            <p class="text-xs text-gray-400">Hızlı etkileşim için önerilir</p>
+                        </div>
+                    </div>
+
+                    <div class="my-6">
+                        <div class="text-gray-500 line-through text-sm font-semibold">95.00 TL</div>
+                        <div class="text-4xl font-extrabold text-white">79.99 <span class="text-sm font-normal text-gray-400">TL</span></div>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>1.000</strong> Instagram Takipçi</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>Anında</strong> İşleme Alınır</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>Şifre İstenmez</strong></li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> Yüksek Kaliteli Profil Görünümü</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> 3D Secure Güvenli Ödeme</li>
+                    </ul>
+                </div>
+
+                <button onclick="openModal('1000-takipci')" class="w-full py-3.5 px-4 gradient-bg text-white font-bold rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/30">
+                    <i class="fa-solid fa-cart-shopping"></i> Satın Al
+                </button>
+            </div>
+
+            <!-- PAKET 3: 5000 TAKİPÇİ -->
+            <div class="bg-gray-900 rounded-2xl p-6 card-glow flex flex-col justify-between relative transition-all duration-300">
+                <div>
+                    <!-- INDIRIM BADGE -->
+                    <div class="absolute -top-3 right-4 bg-red-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                        %20 İndirim
+                    </div>
+
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-orange/20 text-brand-orange flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">PRO Büyüme Paketi</h3>
+                            <p class="text-xs text-gray-400">Kurumsal & Butik hesaplar için</p>
+                        </div>
+                    </div>
+
+                    <div class="my-6">
+                        <div class="text-gray-500 line-through text-sm font-semibold">360.00 TL</div>
+                        <div class="text-3xl font-extrabold text-white">299.99 <span class="text-sm font-normal text-gray-400">TL</span></div>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>5.000</strong> Instagram Takipçi</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>VIP Hızlı</strong> Gönderim</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> <strong>Şifre İstenmez</strong></li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> Prestijli Profil Görünümü</li>
+                        <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-500 text-xs"></i> Öncelikli Canlı Destek</li>
+                    </ul>
+                </div>
+
+                <button onclick="openModal('5000-takipci')" class="w-full py-3 px-4 gradient-bg text-white font-bold rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-cart-shopping"></i> Satın Al
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="neden-biz" class="py-16 px-4 bg-gray-900/40 border-y border-gray-800 my-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold mb-2">Neden Medya GO?</h2>
+                <p class="text-gray-400 text-sm">Sizlere en güvenli ve hızlı sosyal medya büyütme deneyimini sunuyoruz.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 text-center">
+                    <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Şifresiz & Güvenli</h3>
+                    <p class="text-xs text-gray-400">Sizden asla hesabınızın şifresini istemeyiz. Sadece kullanıcı adınız yeterlidir.</p>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 text-center">
+                    <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Anında Teslimat</h3>
+                    <p class="text-xs text-gray-400">Siparişiniz onaylandığı an otomasyon sistemimiz otomatik olarak gönderimi başlatır.</p>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 text-center">
+                    <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Shopier Altyapısı</h3>
+                    <p class="text-xs text-gray-400">Tüm ödemeleriniz Shopier güvencesiyle 256-bit SSL şifrelemeli 3D Secure ile yapılır.</p>
+                </div>
+
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 text-center">
+                    <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Kesintisiz Destek</h3>
+                    <p class="text-xs text-gray-400">Sipariş öncesi ve sonrası sorularınız için ekibimiz her zaman yanınızdadır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="sss" class="py-8 px-4 max-w-3xl mx-auto w-full mb-16">
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold mb-2">Sıkça Sorulan Sorular</h2>
+            <p class="text-gray-400 text-sm">Aklınıza takılan soruların yanıtları burada.</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-4">
+                <h4 class="font-bold text-white text-sm mb-1"><i class="fa-solid fa-circle-question text-brand-orange mr-2"></i> Sipariş verirken şifre vermem gerekiyor mu?</h4>
+                <p class="text-xs text-gray-400 pl-6">Kesinlikle HAYIR! İşlemlerin tamamı şifresiz olarak gerçekleşir. Sadece Instagram kullanıcı adınızı yazmanız yeterlidir.</p>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-4">
+                <h4 class="font-bold text-white text-sm mb-1"><i class="fa-solid fa-circle-question text-brand-orange mr-2"></i> Hesabımın gizli olması sorun yaratır mı?</h4>
+                <p class="text-xs text-gray-400 pl-6">Evet, takipçi gönderiminin sorunsuz başlayabilmesi için hesabınızın mutlaka <strong>HERKESE AÇIK (Gizli Olmayan)</strong> konumda olması gerekmektedir.</p>
+            </div>
+
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-4">
+                <h4 class="font-bold text-white text-sm mb-1"><i class="fa-solid fa-circle-question text-brand-orange mr-2"></i> Takipçiler ne zaman yüklenmeye başlar?</h4>
+                <p class="text-xs text-gray-400 pl-6">Shopier üzerinden ödemeniz tamamlandığı anda siparişiniz sıraya alınır ve genellikle 5-15 dakika içerisinde gönderim başlar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-950 border-t border-gray-800 py-8 px-4 text-center text-xs text-gray-500">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-white">MEDYA GO</span> &copy; 2026 Tüm Hakları Saklıdır.
+            </div>
+            <div class="flex items-center gap-4 text-gray-400">
+                <span><i class="fa-solid fa-shield-cat"></i> Shopier 256-Bit SSL Koruma</span>
+                <span>•</span>
+                <span>%100 Güvenli Ödeme</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl max-w-md w-full p-6 relative shadow-2xl">
+            <!-- CLOSE BUTTON -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-xl font-bold text-white mb-1">Sipariş Tamamlama</h3>
+            <p class="text-xs text-gray-400 mb-4">Seçtiğiniz paket: <span id="modalPackageName" class="text-brand-orange font-bold"></span></p>
+
+            <!-- WARNING BOX (HERKESE AÇIK OLMALI) -->
+            <div class="bg-amber-950/50 border border-amber-800/60 rounded-xl p-3 mb-4 text-xs text-amber-200 flex items-start gap-2.5">
+                <i class="fa-solid fa-triangle-exclamation text-amber-400 text-sm mt-0.5"></i>
+                <div>
+                    <strong>ÇOK ÖNEMLİ UYARI:</strong><br>
+                    İşlemin başlaması için Instagram hesabınızın <u>HERKESE AÇIK</u> olması gerekmektedir. Gizli hesaplara gönderim yapılamaz!
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1.5">Instagram Kullanıcı Adınız</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-bold">@</span>
+                        <input type="text" id="modalUsername" placeholder="kullanici_adiniz" class="w-full bg-gray-950 border border-gray-800 rounded-xl py-2.5 pl-8 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-brand-orange transition-colors">
+                    </div>
+                    <p class="text-[11px] text-gray-500 mt-1">Örn: ahmet_123 (Şifre gerekmez)</p>
+                </div>
+
+                <div class="bg-gray-950 p-3 rounded-xl border border-gray-800/80 flex items-center justify-between text-sm">
+                    <span class="text-gray-400">Toplam Tutar:</span>
+                    <span id="modalPackagePrice" class="font-extrabold text-white text-lg"></span>
+                </div>
+
+                <!-- CHECKBOX -->
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="privacyCheck" class="rounded bg-gray-950 border-gray-800 text-brand-orange focus:ring-0">
+                    <label for="privacyCheck" class="text-xs text-gray-400 cursor-pointer">Hesabımın **Herkese Açık** olduğunu onaylıyorum.</label>
+                </div>
+
+                <button onclick="proceedToPayment()" class="w-full py-3.5 px-4 gradient-bg text-white font-bold rounded-xl hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg shadow-brand-orange/20 text-sm">
+                    <i class="fa-solid fa-lock"></i> Shopier İle Güvenli Öde
+                </button>
+
+                <p class="text-[10px] text-center text-gray-500">
+                    "Güvenli Öde" butonuna tıkladığınızda Shopier 3D Secure ödeme sayfasına yönlendirileceksiniz.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIVE SALES TOAST NOTIFICATION -->
+    <div id="liveToast" class="fixed bottom-4 left-4 z-40 bg-gray-900 border border-gray-800 rounded-xl p-3 shadow-2xl flex items-center gap-3 max-w-xs">
+        <div class="w-9 h-9 rounded-full bg-emerald-950 border border-emerald-800 text-emerald-400 flex items-center justify-center text-sm flex-shrink-0">
+            <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+        <div class="text-xs">
+            <div id="toastUser" class="font-bold text-white">@ahmet***</div>
+            <div id="toastText" class="text-gray-400">1.000 Takipçi satın aldı!</div>
+            <div class="text-[10px] text-gray-600 mt-0.5">Az önce • Doğrulanmış Sipariş</div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT & SHOPIER ENTEGRASYONU -->
+    <script>
+        // SHOPIER CANLI ÜRÜN LİNKLERİNİZ
+        const packages = {
+            '100-takipci': {
+                name: '100 Instagram Takipçi',
+                price: '29.99 TL',
+                shopierUrl: 'https://shopier.com/medyagotr/51984230'
+            },
+            '1000-takipci': {
+                name: '1.000 Instagram Takipçi',
+                price: '79.99 TL',
+                shopierUrl: 'https://shopier.com/medyagotr/51984240'
+            },
+            '5000-takipci': {
+                name: '5.000 Instagram Takipçi',
+                price: '299.99 TL',
+                shopierUrl: 'https://shopier.com/medyagotr/51984256'
+            }
+        };
+
+        let selectedPackageId = null;
+
+        function openModal(packageId) {
+            selectedPackageId = packageId;
+            const pkg = packages[packageId];
+            if (!pkg) return;
+
+            document.getElementById('modalPackageName').innerText = pkg.name;
+            document.getElementById('modalPackagePrice').innerText = pkg.price;
+            document.getElementById('modalUsername').value = '';
+            document.getElementById('privacyCheck').checked = false;
+
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function proceedToPayment() {
+            const usernameInput = document.getElementById('modalUsername');
+            const username = usernameInput ? usernameInput.value.trim().replace('@', '') : '';
+            const privacyCheck = document.getElementById('privacyCheck').checked;
+
+            if (!username) {
+                alert('Lütfen Instagram kullanıcı adınızı giriniz!');
+                return;
+            }
+
+            if (!privacyCheck) {
+                alert('Lütfen hesabınızın HERKESE AÇIK olduğunu onaylayan kutucuğu işaretleyin.');
+                return;
+            }
+
+            const pkg = packages[selectedPackageId];
+            if (pkg && pkg.shopierUrl) {
+                // Soru işareti (?) kontrolü eklenmiş hatasız Shopier yönlendirmesi
+                const baseUrl = pkg.shopierUrl;
+                const separator = baseUrl.includes('?') ? '&' : '?';
+                const finalUrl = `${baseUrl}${separator}note=${encodeURIComponent('Instagram Kullanici Adi: @' + username)}`;
+                
+                window.location.href = finalUrl;
+            } else {
+                alert('Ödeme linki henüz tanımlanmadı.');
+            }
+        }
+
+        // CANLI SATIŞ BİLDİRİMLERİ (CANLI CANLI GÖRÜNÜR)
+        const sampleUsers = ['merts***', 'ayse_k***', 'butik_g***', 'caner_t***', 'selin_m***', 'emre_o***'];
+        const samplePacks = ['1000 Takipçi paketi satın aldı!', '100 Takipçi paketi satın aldı!', '5000 Takipçi PRO paketi satın aldı!'];
+
+        function showRandomToast() {
+            const toast = document.getElementById('liveToast');
+            const randomUser = sampleUsers[Math.floor(Math.random() * sampleUsers.length)];
+            const randomPack = samplePacks[Math.floor(Math.random() * samplePacks.length)];
+
+            document.getElementById('toastUser').innerText = '@' + randomUser;
+            document.getElementById('toastText').innerText = randomPack;
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // İlk bildirim 3 saniye sonra, ardından her 12 saniyede bir çıkar
+        setTimeout(showRandomToast, 3000);
+        setInterval(showRandomToast, 12000);
+    </script>
+</body>
+</html>
